@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/*Home page*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;;
+}
+
+
+body {
+    background-color: #081b29;
+    color: #ededed;
+}
+
+.home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 10%;
+    top: 50%;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home-content h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.home-content h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #00abf0;
+}
+
+.home-content p {
+    font-size: 16px;
+    margin: 20px 0 40px;
+}
+
+.home-content .btn-box {
+    display: flex;
+    justify-content: space-between;
+    width: 345px;
+    height: 50px;
+}
+
+.btn-box a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    background: transparent;
+    border: 2px solid #00abf0;
+    border-radius: 8px;
+    font-size: 19px;
+    color: #00abf0;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.btn-box a:hover {
+    border-color: #081b29;
+    background-color: #00abf0;
+    color: #081b29;
+    transition: 0.3s;
+}
+
+.out-btn-box button {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    background: transparent;
+    border: 2px solid #00abf0;
+    border-radius: 8px;
+    font-size: 19px;
+    color: #00abf0;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.out-btn-box button:hover {
+    border-color: #081b29;
+    background-color: #00abf0;
+    color: #081b29;
+    transition: 0.3s;
+}
+
+.d-flex {
+    width: 500px;
+}
+
+.judul {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+#logo {
+    width: 180px;
+}
+#learnsec {
+    height: 80vh;
+}
+
+#featuresec {
+    width: 100%;
+    height: 80vh;
+}
+.featuresitem {
+    width: 85%;
+    left: 130px;
+    height: 70px;
+    border: 3px solid #00abf0;
+    background-color: #00abf0;
+    text-align: center;
+    position: relative;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.textfeatures {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 18px;
+}
+#teamsec {
+    height: 80vh;
+    margin-top: 60px;
+}
+
+#loginbtn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    background: transparent;
+    border: 0px solid #00abf0;
+    border-radius: 3px;
+    font-size: 5px;
+    color: #00abf0;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+#logoutbtn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    background: transparent;
+    border: 0px solid #00abf0;
+    border-radius: 3px;
+    font-size: 5px;
+    color: #00abf0;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+#registbtn {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+    background: transparent;
+    border: 0px solid #00abf0;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #00abf0;
+    text-decoration: none;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+.navbar {
+    background-color: #081b29;
+    border-bottom: 2px solid #00abf0;
+    box-shadow: 0 0 25px #00abf0;
+}
+
+.navbar-nav .nav-item {
+    font-size: 16px;
+    text-decoration: none;
+    margin: 0px 20px;
+    display: inline-block;
+    position: relative;
+}
+
+/* Efek hover pada setiap item menu */
+.navbar-nav .nav-item a:hover {
+    background-color: #00abf0; /* Warna latar belakang saat di-hover */
+    color: #fff; /* Warna teks saat di-hover */
+    transition: background-color 0.3s, color 0.3s; /* Animasi perubahan warna */
+    border-radius: 8px;
+}
+
+/* Efek saat item menu di-klik (active) */
+    .navbar-nav .nav-item li .active {
+        background-color: #0077a3; /* Warna latar belakang menjadi lebih gelap saat di-klik */
+        border-radius: 8px;
+    }
+footer {
+    background-color: #081b29;
+    border-top: 2px solid #00abf0 !important;
+    box-shadow: 0 0 25px #00abf0;
+    height: 40vh !important;
+    width: 100.8%;
+}
+
+.footersec {
+    color: #fff;
+}
+.nav-link {
+    color: white;
+}
+.nav-link:hover {
+    color: #00abf0;
+}
+h5 {
+    color: #00abf0;
+}
+.rounded-border img {
+    width: 100%; /* Gambar mengisi seluruh area elemen */
+    height: 100%; /* Gambar mengisi seluruh area elemen */
+    object-fit: cover; /* Mempertahankan aspek gambar */
+}
+.photo-row {
+    display: flex; /* Membuat foto berbaris */
+    justify-content: space-between; /* Jarak antara foto */
+}
+
+.photo {
+    text-align: center; /* Posisi teks ke tengah */
+    margin: 40px; /* Jarak di sekitar setiap foto */
+}
+
+.photo img {
+    width: 250px; /* Ukuran foto */
+    height: 250px; /* Ukuran foto */
+    border: 5px solid #00abf0; /* Border foto */
+    border-radius: 50%; /* Membuat foto berbentuk bulat */
+}
+.foto-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    margin-left: 50px;
+}
+#btn {
+    margin-left: 80%;
+    margin-top: 1%;
+    color: #00abf0;
+}
+
+#user {
+    margin-right: -45px;
+    border-radius: 50%;
+    margin-top: 1%;
+    color: #00abf0;
+}
+
+
+.hero {
+    width: 80%;
+    height: 600px;
+    position: relative;
+    margin: 10px auto;
+    overflow: hidden;
+}
+.btn-box {
+    display: flex;
+}
+.btn-box button {
+    margin-top: 50px;
+    background: transparent;
+    width: 500px;
+    cursor: pointer;
+    padding: 14px 16px;
+    margin-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid #00abf0;
+    border-radius: 20px;
+}
+.btn-box button:hover {
+    color: #00abf0;
+}
+.content-right img {
+    width: 400px;
+}
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    position: absolute;
+    transform: translateX(100%);
+    transition: 0.3s;
+    height: 50vh;
+}
+.content-left {
+    flex-basis: 50%;
+    margin-left: 50px;
+}
+.content-left h1 {
+    font-weight: 700;
+    font-size: 56px;
+}
+.content-left p {
+    font-size: 14px;
+    padding: 30px 0;
+    text-align: justify;
+    letter-spacing: 2px;
+}
+.content-left a {
+    width: 150px;
+    display: block;
+    padding: 8px 5px;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: #00abf0;
+    color: white;
+    text-align: center;
+}
+
+.content-left a:hover {
+    color: #00abf0;
+    background-color: transparent;
+    border-color: #00abf0;
+    border-radius: 20px;
+}
+
+.content-right {
+    flex-basis: 50%;
+    text-align: center;
+}
+#content1 {
+    transform: translateX(0px);
+}
+#btn1 {
+    color: #00abf0;
+}
+
+#category-html {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+#category-html:hover {
+    transform: translateY(-25px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+#category-css {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+#category-css:hover {
+    transform: translateY(-25px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+#category-js {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+#category-js:hover {
+    transform: translateY(-25px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.border-info {
+    box-shadow: 0 0 10px #0ef;
+    border-radius: 10px;
+}
+
+.vid-link {
+    text-decoration: none;
+    color: white;
+}
+
+.vid-link:hover {
+    opacity: 0.8;
+    color: #0ef;
+}
+
+.page-item.active .page-link {
+    background-color: #0ef;
+    /* Ganti dengan warna yang Anda inginkan */
+}
+
+/* Ubah warna teks pagination aktif */
+.page-item.active .page-link {
+    color: #ffffff;
+    /* Ganti dengan warna yang Anda inginkan */
+}
+
+/* Ubah warna latar belakang pagination non-aktif */
+.page-item:not(.active) .page-link {
+    background-color: transparent;
+    /* Ganti dengan warna yang Anda inginkan */
+}
+
+/* Ubah warna teks pagination non-aktif */
+.page-item:not(.active) .page-link {
+    color: #ffffff;
+    /* Ganti dengan warna yang Anda inginkan */
+}
+
+.helpsec {
+    width: 70vw;
+    margin-top: 30px;
+    margin-left: 220px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: justify;
+    font-size: 16px;
+  }
+  .help {
+    width: 60vw;
+    margin-left: 50px;
+    margin-top: 30px;
+  }
+  
+  .faq-list {
+    list-style: none;
+    padding: 0;
+    margin-left: 60px;
+  }
+  
+  .faq-item {
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px #00abf0;
+    padding: 25px;
+    border-radius: 20px;
+    width: 90%;
+  }
+  .faq-item .faq-question:hover {
+    color: #00abf0;
+  }
+  
+  .faq-question {
+    font-weight: bold;
+    cursor: pointer;
+    padding-right: 20px;
+  }
+  
+  .faq-question::after {
+      content: "▶";
+      position: absolute;
+      right: 40px;
+    }
+    
+  .faq-answer {
+    display: none;
+  }
+  
+  .send:hover{
+    color:#00abf0;
+    background-color:transparent !important;
+  }
+
+  .policy {
+    width: 70vw;
+    margin-top: 30px;
+    margin-left: 220px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px #00abf0;
+    height: 110vh;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: justify;
+    font-size: 16px;
+  }
+  .privacypolicy {
+    width: 60vw;
+    margin-left: 50px;
+    margin-top: 30px;
+  }
+
+ 
