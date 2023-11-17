@@ -16,7 +16,13 @@
     <div class="row justify-content-center">
         @if (session()->has('status'))
             <div class="alert alert-primary alert-dismissible fade show col-6" role="alert">
-                {!! session('status') !!}
+                <span style="overflow-wrap: break-word">{!! session('status') !!}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (session()->has('authConfirm'))
+            <div class="alert alert-danger alert-dismissible fade show col-8" role="alert">
+                <span style="overflow-wrap: break-word">{{ session('authConfirm') }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
@@ -33,7 +39,7 @@
                 <form action="/login" method="POST">
                     @csrf
                     <div class="input-box">
-                        <input type="text" name="username" value="{{old('username')}}" required>
+                        <input type="text" name="username" value="{{ old('username') }}" required>
                         <label>Username</label>
                         <i class='bx bxs-user'></i>
                         @error('username')

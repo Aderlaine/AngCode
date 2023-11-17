@@ -4,7 +4,7 @@
     .no-vid{
         border: 2px solid #00abf0;
         border-radius: 10px;
-        box-shadow: 0 0 25px #00abf0;        }
+        box-shadow: 0 0 18px #00abf0;        }
 </style>
 
     <div class="container p-0"
@@ -19,9 +19,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
-                    <h1 class="mb-3 mt-2">Your Videos</h1>
+                    <h1 class="mb-4 mt-2">Your Videos</h1>
                     @if ($videos->isEmpty())
-                        <h3 class="text-center p-5 text-light no-vid" >No Videos Available</h3>
+                        <h4 class="text-center p-5 text-light no-vid" >No Videos Available</h4>
                     @else
                         @foreach ($videos as $key => $video)
                             <div class="col-3 mb-3">
@@ -47,18 +47,18 @@
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="deleteVideoModalLabel">Konfirmasi Hapus Video</h5>
+                                      <h5 class="modal-title" id="deleteVideoModalLabel">Delete Confirmation</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body text-dark">
-                                      Apakah Anda yakin ingin menghapus video ini?
+                                        Are you sure you want to Delete this Video?
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                       <form id="delete-video-form" action="/videos/{{ $video->id }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Hapus Video</button>
+                                        <button type="submit" class="btn btn-danger">Delete Video</button>
                                       </form>
                                     </div>
                                   </div>

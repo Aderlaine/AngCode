@@ -5,7 +5,7 @@
         .no-vid{
             border: 2px solid #00abf0;
             border-radius: 10px;
-            box-shadow: 0 0 25px #00abf0;        }
+            box-shadow: 0 0 18px #00abf0;        }
     </style>
 
     <div class="container p-0"

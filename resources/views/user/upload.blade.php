@@ -77,7 +77,7 @@
                 <div class="row ms-3">
                     <h1 class="mb-4 mt-2" style="padding-left: 40%">Upload Video</h1>
                     <div class="card offset-3 px-5 pb-4"
-                        style="border-radius: 3%;background-color: transparent; border-color:#00abf0; width:60%;box-shadow: 0px 0px 25px #00abf0;">
+                        style="border-radius: 3%;background-color: transparent; border-color:#00abf0; width:60%;box-shadow: 0px 0px 18px #00abf0;">
                         <div class="form-box login">
                             <form action="/videos" method="POST">
                                 @csrf

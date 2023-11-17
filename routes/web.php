@@ -44,7 +44,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/videos', [VideoController::class, 'index']);
 Route::post('/videos', [VideoController::class, 'upload'])->middleware('auth');
 
-Route::get('/videos/{video}', [VideoController::class, 'show'])->middleware('auth');
+Route::get('/videos/{video}', [VideoController::class, 'show'])->middleware('custom.auth');
 Route::delete('/videos/{video}', [VideoController::class, 'destroy'])->middleware('auth');
 
 Route::post('/bookmark/add',[BookmarkController::class, 'add'])->middleware('auth');

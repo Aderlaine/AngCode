@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             "username" => "admin",
             "email" => "admin@gmail.com",
-            "applicant_category" => "student",
+            "applicant_category" => "admin",
             "birth" => "2003/02/02",
             "password" => "admin",
             "content_creator" => true
