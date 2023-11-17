@@ -24,6 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/user', [UserController::class, 'index'])->middleware('auth');
+Route::post('/user/image', [UserController::class, 'addImage'])->middleware('auth');
 Route::get('/upload', [UserController::class, 'upload'])->middleware('auth');
 Route::get('/save-video', [UserController::class, 'saveVid'])->middleware('auth');
 

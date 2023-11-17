@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('birth');
             $table->string('password');
             $table->boolean('content_creator')->default(false);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

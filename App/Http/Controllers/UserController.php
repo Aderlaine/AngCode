@@ -6,6 +6,8 @@ use App\Models\Video;
 use App\Models\Bookmark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -59,40 +61,65 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
-    
+
     public function saveVid()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
-    $bookmarks = Bookmark::where('user_id', $user->id)->get();
+        $bookmarks = Bookmark::where('user_id', $user->id)->get();
 
-    $videos = Video::whereHas('bookmarks', function ($query) use ($user) {
+        $videos = Video::whereHas('bookmarks', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })
-        ->orderBy('created_at')
-        ->paginate(8);
+            ->orderBy('created_at')
+            ->paginate(8);
 
-    $vidThumbs = [];
-    
-    foreach ($videos as $video) {
-        $vidThumbs[] = $this->getYouTubeThumbnail($video->link);
+        $vidThumbs = [];
+
+        foreach ($videos as $video) {
+            $vidThumbs[] = $this->getYouTubeThumbnail($video->link);
+        }
+
+        $bookmarkIds = $bookmarks->pluck('id');
+
+        return view(
+            'user.savedVid',
+            [
+                'title' => $user->username,
+                'active' => 'user',
+                'user' => $user,
+                'videos' => $videos,
+                'thumbnails' => $vidThumbs,
+                'idBookmark' => $bookmarkIds,
+                'bookmarks' => $bookmarks,
+                'dash' => 'savedVid'
+            ]
+        );
     }
 
-    $bookmarkIds = $bookmarks->pluck('id');
-
-    return view(
-        'user.savedVid',
-        [
-            'title' => $user->username,
-            'active' => 'user',
-            'user' => $user,
-            'videos' => $videos,
-            'thumbnails' => $vidThumbs,
-            'idBookmark' => $bookmarkIds,
-            'bookmarks' => $bookmarks, 
-            'dash' => 'savedVid'
-        ]
-    );
-}
-
+    public function addImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+    
+        $user = auth()->user();
+    
+        if ($request->hasFile('image')) {
+            // Hapus gambar profil lama jika ada
+            if ($user->image) {
+                Storage::delete($user->image);
+            }
+    
+            // Simpan gambar baru
+            $path = $request->file('image')->store('images/profile_pictures');
+    
+            // Gunakan Query Builder untuk memperbarui kolom profil_picture
+            DB::table('users')
+                ->where('id', $user->id)
+                ->update(['image' => $path]);
+        }
+    
+        return redirect()->back()->with('success', 'Profile picture has been updated!');
+    }
 }
