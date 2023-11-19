@@ -58,10 +58,16 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-                        style="width: 60px;height:60px;object-fit:cover; object-position:center"
-                        class="rounded-circle me-3">
-                    <span><b style="color: white;">{{$video -> uploader-> username}}</b></span>
+                    @if (auth()->user()->image)
+                        <img src="{{ asset('storage/' . auth()->user()->image) }}"
+                            style="width: 60px;height:60px;object-fit:cover; object-position:center"
+                            class="rounded-circle me-3" alt="Profil Picture" class="profile-image">
+                    @else
+                        <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+                            style="width: 60px;height:60px;object-fit:cover; object-position:center"
+                            class="rounded-circle me-3" alt="Profil Picture" class="profile-image">
+                    @endif
+                    <span><b style="color: white;">{{ $video->uploader->username }}</b></span>
                 </div>
                 <div class="card border-info mt-4" style="background: transparent; width:100%;border-radius: 10px">
                     <div class="card-header border-info py-3" style="border-radius: 10px 10px 0 0">
