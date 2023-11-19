@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Upload;
 use App\Models\Bookmark;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Arr;
 
 class Video extends Model
 {
@@ -52,5 +53,18 @@ class Video extends Model
     public function isBookmarkedBy(User $user)
     {
         return $this->bookmarks->where('user_id', $user->id)->count() > 0;
+    }
+
+    protected static function boot(){
+        parent::boot();
+
+        // Menangkap event created untuk mencatat ke tabel uploads
+        static::created(function ($video) {
+            $upload = new Upload([
+                'user_id' => $video->id,
+                'video_id'  => $video->uploader_id,
+            ]);
+            $upload->save();
+        });
     }
 }
