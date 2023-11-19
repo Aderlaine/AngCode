@@ -92,13 +92,13 @@ class VideoController extends Controller
             'uploader_id' => '',
             'category_id' => '',
         ]);
-        Video::create($validatedData);
-        return redirect('/videos');
+        $video = Video::create($validatedData);
+        return redirect("/videos/$video->id")->with("successUpload", "Video Has Been Uploaded");
     }
 
     public function destroy(Video $video){
         $video -> delete();
 
-        return redirect()->back()->with('successDelete', '<b>Succesfully!</b> Delete Video!');
+        return redirect()->back()->with('successDelete', '<b>Succesfully!</b> Video has been deleted!');
     }    
 }

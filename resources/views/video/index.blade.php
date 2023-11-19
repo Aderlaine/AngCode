@@ -10,6 +10,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                @if (session()->has('successUpload'))
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <i class='bx bxs-badge-check me-1'></i><strong>Successfully!</strong> {{ session('successUpload') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 @if (session()->has('successRemove'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <i class='bx bxs-badge-check me-1'></i> {{ session('successRemove') }}
