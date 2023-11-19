@@ -81,9 +81,15 @@
           </form>
       </div>
         @else
-            <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-                style="width: 100px;height:100px;object-fit:cover; object-position:center; text-align:center"
-                class="rounded-circle me-3 my-3">
+        <div class="profile-image-container mt-5">
+          <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="Profil Picture" class="profile-image">
+          <label for="profile-img-input" id="upload-label"><i class='bx bxs-camera me-1' ></i>Update</label>
+          <form action="/user/image" method="POST" enctype="multipart/form-data">
+              @csrf
+              <input type="file" name="image" id="profile-img-input" class="form-control"  onchange="displayImage(this)">
+              <button type="submit" style="display: none;"></button>
+          </form>
+      </div>
         @endif
         <h3 class="mt-3">{{ $user->username }}</h3>
         <a href="/user" style="color: aliceblue;  " class="text-decoration-none">
