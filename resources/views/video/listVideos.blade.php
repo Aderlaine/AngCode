@@ -11,6 +11,22 @@
             background-color: #00abf0;
             color: #fff
         }
+
+        .level {
+            font-size: 20px;
+            color: white;
+            text-decoration: none;
+            border: 2px solid #00abf0;
+            width: 15em;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #00abf0;
+            transition: 0.2s;
+        }
+
+        .level:hover {
+            color: #00abf0;
+        }
     </style>
     <main style="background-color: #081b29; margin-top:140px !important; margin-bottom:100px !important;" class="mt-5">
         <div style="margin-top: -34px" id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -64,6 +80,9 @@
         </div>
         <div class="col-10" style="background-color:#081b29; margin-left:8%">
             <form action="/videos">
+                @if (request('level'))
+                    <input type="hidden" name="level" value="{{ request('level') }}">
+                @endif
                 <div class="input-group mt-4 offset-3" style="width:50%">
                     <input type="text" class="form-control" placeholder="Search Video" name="search"
                         value="{{ request('search') }}">
@@ -71,7 +90,29 @@
                             class='bx bx-search-alt-2 me-1'></i>Search</button>
                 </div>
             </form>
-            <h1 style="color: white;font-weight:600" class="mt-3">All Videos</h1>
+            <div class="row my-5">
+                <a class="level col-4" href="/videos?level=basic"
+                    style="{{ request('level') === 'basic' ? 'color: #00abf0;' : '' }}">
+                    <div class="text-center my-3">Basic</div>
+                </a>
+                <a class="level col-4" href="/videos?level=beginner"
+                    style="{{ request('level') === 'beginner' ? 'color: #00abf0;' : '' }}">
+                    <div class="text-center my-3">Beginner</div>
+                </a>
+                <a class="level col-4" href="/videos?level=intermediate"
+                    style="{{ request('level') === 'intermediate' ? 'color: #00abf0;' : '' }}">
+                    <div class="text-center my-3">Intermediate</div>
+                </a>
+            </div>
+            @if (request('level') === 'basic')
+                <h1 style="color: white;font-weight:600" class="mt-3">HTML And CSS Videos</h1>
+            @elseif (request('level') === 'beginner')
+                <h1 style="color: white;font-weight:600" class="mt-3">JavaScript Videos</h1>
+            @elseif (request('level') === 'intermediate')
+                <h1 style="color: white;font-weight:600" class="mt-3">Project Base Videos</h1>
+            @else
+                <h1 style="color: white;font-weight:600" class="mt-3">All Videos</h1>
+            @endif
             <div class="card border-info my-4 p-4" style="background: transparent; justify-content:center;  ">
                 <div class="card-body">
                     @if ($videos->isEmpty())

@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
     $videosQuery->filter(request(['search', 'category']));
 
-    $videos = $videosQuery->paginate(7); 
+    $videos = $videosQuery->latest()->paginate(7); 
 
     $vidThumbs = [];
     foreach ($videos as $link) {

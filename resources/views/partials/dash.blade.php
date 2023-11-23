@@ -72,7 +72,7 @@
         
         @if (auth()->user()->image)
         <div class="profile-image-container mt-5">
-          <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="Profil Picture" class="profile-image">
+          <a href="/storage/{{auth()->user()->image}}"><img src="{{ asset('storage/' . auth()->user()->image) }}" alt="Profil Picture" class="profile-image"></a>
           <label for="profile-img-input" id="upload-label"><i class='bx bxs-camera me-1' ></i>Update</label>
           <form action="/user/image" method="POST" enctype="multipart/form-data">
               @csrf

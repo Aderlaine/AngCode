@@ -136,6 +136,7 @@
                                         <option value="1">HTML</option>
                                         <option value="2">CSS</option>
                                         <option value="3">Javascript</option>
+                                        <option value="3">Project Learning</option>
                                     </select>
                                 </div>
                                 <input type="hidden" name="uploader_id" value="{{ auth()->id() }}">

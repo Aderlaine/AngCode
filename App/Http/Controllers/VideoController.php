@@ -9,46 +9,49 @@ use App\Http\Controllers\Controller;
 
 class VideoController extends Controller
 {
-    public function getYouTubeEmbedCode($url) {
+    public function getYouTubeEmbedCode($url)
+    {
         // Mencocokkan URL YouTube dengan pola yang umum
         $pattern = '/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/';
         preg_match($pattern, $url, $matches);
-    
+
         // Jika ada kecocokan, maka kita dapat mengambil ID video
         if (isset($matches[1])) {
             $videoId = $matches[1];
-            
+
             // Membangun kode HTML yang dapat ditanamkan
             $embedCode = "<iframe width='100%' height='500' src='https://www.youtube.com/embed/{$videoId}' frameborder='0' style='border-radius:20px;' allowfullscreen></iframe>";
-    
+
             return $embedCode;
         } else {
             return null; // URL YouTube tidak valid
         }
     }
 
-    public function getYouTubeThumbnail($url) {
+    public function getYouTubeThumbnail($url)
+    {
         // Mencocokkan URL YouTube dengan pola yang umum
         $pattern = '/^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/';
         preg_match($pattern, $url, $matches);
-    
+
         // Jika ada kecocokan, maka kita dapat mengambil ID video
         if (isset($matches[1])) {
             $videoId = $matches[1];
-            
+
             // Membangun ulang URL thumbnail
             $thumbnailUrl = "https://img.youtube.com/vi/{$videoId}/maxresdefault.jpg";
-    
+
             return $thumbnailUrl;
         } else {
             return null; // URL YouTube tidak valid
         }
     }
-    
-    public function index(){
-        $videos = Video::latest()->filter(request(['search', 'category']))->paginate(7);
+
+    public function index()
+    {
+        $videos = Video::latest()->filter(request(['search', 'category', 'level']))->paginate(7);
         $vidThumbs = [];
-        foreach($videos as $video){
+        foreach ($videos as $video) {
             $vidThumbs[] = $this->getYouTubeThumbnail($video->link);
         }
         return view('video.listVideos', [
@@ -59,20 +62,21 @@ class VideoController extends Controller
         ]);
     }
 
-    public function show(Video $video){
+    public function show(Video $video)
+    {
         $recomendVids = Video::where('category_id', $video->category_id)
-        ->where('id', '!=', $video->id)
-        ->inRandomOrder()
-        ->take(5)
-        ->get();
+            ->where('id', '!=', $video->id)
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
         $vidThumbs = [];
-        foreach($recomendVids as $link){
+        foreach ($recomendVids as $link) {
             $vidThumbs[] = $this->getYouTubeThumbnail($link->link);
         }
         $bookmark = Bookmark::where('video_id', $video->id)
-        ->where('user_id', auth()->id())
-        ->first();
-        return view('video.index',[
+            ->where('user_id', auth()->id())
+            ->first();
+        return view('video.index', [
             "video" => $video,
             "youtubeVid" => $this->getYouTubeEmbedCode($video->link),
             "recomendVids" => $recomendVids,
@@ -83,8 +87,9 @@ class VideoController extends Controller
         ]);
     }
 
-    public function upload(Request $request){
-        $validatedData = $request -> validate([
+    public function upload(Request $request)
+    {
+        $validatedData = $request->validate([
             'title' => 'required|min:10|max:255',
             'link' => 'required',
             'maker' => 'required',
@@ -92,13 +97,32 @@ class VideoController extends Controller
             'uploader_id' => '',
             'category_id' => '',
         ]);
+
+        $category_id = $validatedData['category_id'];
+        switch ($category_id) {
+            case 1:
+                $level = 'basic';
+            break;
+            case 2:
+                $level = 'beginner';
+            break;
+            case 3:
+                $level = 'intermediate';
+            break;
+            default:
+                $level = 'other';
+        }
+
+        $validatedData['level'] = $level;
+
         $video = Video::create($validatedData);
         return redirect("/videos/$video->id")->with("successUpload", "Video Has Been Uploaded");
     }
 
-    public function destroy(Video $video){
-        $video -> delete();
+    public function destroy(Video $video)
+    {
+        $video->delete();
 
         return redirect()->back()->with('successDelete', '<b>Succesfully!</b> Video has been deleted!');
-    }    
+    }
 }

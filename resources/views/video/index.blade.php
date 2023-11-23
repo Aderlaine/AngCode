@@ -58,10 +58,11 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    @if (auth()->user()->image)
-                        <img src="{{ asset('storage/' . auth()->user()->image) }}"
+                    @if ($video->uploader->image)
+                        <a href="/storage/{{$video->uploader->image}}"><img src="{{ asset('storage/' . $video->uploader->image) }}"
                             style="width: 60px;height:60px;object-fit:cover; object-position:center"
                             class="rounded-circle me-3" alt="Profil Picture" class="profile-image">
+                        </a>
                     @else
                         <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
                             style="width: 60px;height:60px;object-fit:cover; object-position:center"

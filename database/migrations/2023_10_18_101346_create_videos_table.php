@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('link');
             $table->text('description');
+            $table->string('level');
             $table->string('maker');
             $table->timestamps();
         });
