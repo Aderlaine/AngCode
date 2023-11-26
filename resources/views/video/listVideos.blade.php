@@ -141,7 +141,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col d-flex align-items-center justify-content-center">
-                    {{ $videos->onEachSide(1)->links() }}
+                    {{ $videos->appends(['level' => request('level')])->onEachSide(1)->links() }}
                 </div>
             </div>
         </div>

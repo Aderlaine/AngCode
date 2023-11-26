@@ -25,7 +25,6 @@ Route::get('/', function () {
 
 Route::get('/user', [UserController::class, 'index'])->middleware('auth');
 Route::post('/user/image', [UserController::class, 'addImage'])->middleware('auth');
-Route::get('/upload', [UserController::class, 'upload'])->middleware('auth');
 Route::get('/save-video', [UserController::class, 'saveVid'])->middleware('auth');
 
 Route::get('/help', function () {
@@ -37,6 +36,7 @@ Route::get('/policy', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
+
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
@@ -44,6 +44,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/videos', [VideoController::class, 'index']);
 Route::post('/videos', [VideoController::class, 'upload'])->middleware('auth');
+Route::get('/upload', [UserController::class, 'upload'])->middleware('auth');
 
 Route::get('/videos/{video}', [VideoController::class, 'show'])->middleware('custom.auth');
 Route::delete('/videos/{video}', [VideoController::class, 'destroy'])->middleware('auth');

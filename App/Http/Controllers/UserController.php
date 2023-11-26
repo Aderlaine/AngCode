@@ -106,15 +106,12 @@ class UserController extends Controller
         $user = auth()->user();
     
         if ($request->hasFile('image')) {
-            // Hapus gambar profil lama jika ada
             if ($user->image) {
                 Storage::delete($user->image);
             }
     
-            // Simpan gambar baru
             $path = $request->file('image')->store('images/profile_pictures');
     
-            // Gunakan Query Builder untuk memperbarui kolom profil_picture
             DB::table('users')
                 ->where('id', $user->id)
                 ->update(['image' => $path]);
